@@ -1,0 +1,15 @@
+﻿<Window x:Class="RayTwol.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RayTwol"
+        mc:Ignorable="d"
+        MinHeight="200" MinWidth="562"
+        Title="Help" Height="549" Width="562" Background="#FF111617" Icon="icont512.ico" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Grid>
+        <ScrollViewer>
+            <TextBlock x:Name="textBlock" Margin="10" TextWrapping="Wrap" Text="readme.txt missing" Foreground="#FFFFD933" FontSize="16" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

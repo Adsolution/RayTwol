@@ -1,0 +1,34 @@
+﻿<Window x:Class="RayTwol.Warning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RayTwol"
+        mc:Ignorable="d"
+        Title="Warning" Height="210" Width="345" Background="#FF111617" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="icont512.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="141*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button_OK" Content="OK" Margin="10,0,0,7" BorderBrush="#FF1E4139" Foreground="#FFCEF56A" FontSize="16" Grid.Row="1" Height="30" VerticalAlignment="Bottom" FontWeight="Bold" Click="button_OK_Click" HorizontalAlignment="Left" Width="150" IsDefault="True">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF141C1D" Offset="1"/>
+                    <GradientStop Color="#FF233133"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Cancel" Content="Cancel" Margin="0,0,10,7" BorderBrush="#FF1E4139" Foreground="#FFCEF56A" Grid.Row="1" Height="30" VerticalAlignment="Bottom" FontSize="16" FontWeight="Bold" Click="button_Cancel_Click" HorizontalAlignment="Right" Width="150" IsCancel="True">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF141C1D" Offset="1"/>
+                    <GradientStop Color="#FF233133"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Border BorderBrush="{x:Null}" Margin="0,10">
+            <TextBlock x:Name="textblock_Warning" Margin="10,10,10,11" TextWrapping="Wrap" Text="Warning here" TextAlignment="Center" Foreground="#FFCEF56A" FontSize="16" VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>
