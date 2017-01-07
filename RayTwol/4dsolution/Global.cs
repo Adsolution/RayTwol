@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using System.Globalization;
 
 namespace RayTwol
 {
@@ -130,11 +131,11 @@ namespace RayTwol
                             switch (line[0])
                             {
                                 case "v":
-                                    mesh.AddVert(float.Parse(line[1]), float.Parse(line[2]), float.Parse(line[3]));
+                                    mesh.AddVert(float.Parse(line[1], CultureInfo.InvariantCulture), float.Parse(line[2], CultureInfo.InvariantCulture), float.Parse(line[3], CultureInfo.InvariantCulture));
                                     break;
 
                                 case "vt":
-                                    vt.Add(new Vec2(float.Parse(line[1]), float.Parse(line[2])));
+                                    vt.Add(new Vec2(float.Parse(line[1], CultureInfo.InvariantCulture), float.Parse(line[2], CultureInfo.InvariantCulture)));
                                     break;
 
                                 case "f":
