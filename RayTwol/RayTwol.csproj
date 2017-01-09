@@ -72,55 +72,43 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="4dsolution\Gizmos.cs" />
-    <Compile Include="4dsolution\Global.cs" />
-    <Compile Include="4dsolution\Help.xaml.cs">
+    <Compile Include="RayTwol\ReadWriteMemory.cs" />
+    <Compile Include="RayTwol\Gizmos.cs" />
+    <Compile Include="RayTwol\Global.cs" />
+    <Compile Include="RayTwol\Objects.cs" />
+    <Compile Include="RayTwol\Primitives.cs" />
+    <Compile Include="RayTwol\Rendering.cs" />
+    <Compile Include="RayTwol\SpacialSystems.cs" />
+    <Compile Include="RayTwol\GameSync.cs" />
+    <Compile Include="Windows\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
-    <Compile Include="4dsolution\Objects.cs" />
-    <Compile Include="4dsolution\Primitives.cs" />
-    <Compile Include="4dsolution\Rendering.cs" />
-    <Compile Include="4dsolution\SpacialSystems.cs" />
-    <Compile Include="Help.xaml.cs">
-      <DependentUpon>Help.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainRaytwolStuff.cs" />
-    <Compile Include="Splash.xaml.cs">
+    <Compile Include="RayTwol\InputAction.cs" />
+    <Compile Include="RayTwol\MainRaytwolStuff.cs" />
+    <Compile Include="Windows\Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Useful.cs" />
-    <Compile Include="Warning.xaml.cs">
+    <Compile Include="RayTwol\Useful.cs" />
+    <Compile Include="Windows\Warning.xaml.cs">
       <DependentUpon>Warning.xaml</DependentUpon>
     </Compile>
-    <Page Include="4dsolution\Help.xaml">
+    <Page Include="Windows\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Help.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Splash.xaml">
+    <Page Include="Windows\Splash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Warning.xaml">
+    <Page Include="Windows\Warning.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,7 +7,6 @@ namespace RayTwol
 {
     public class Camera
     {
-        //public Transform t = new Transform();
         public Vec3 pos = new Vec3();
         public Vec3 rot = new Vec3();
 
@@ -34,7 +33,7 @@ namespace RayTwol
         public Mesh(bool addToGlobalMeshes = true)
         {
             if (addToGlobalMeshes)
-                Global.meshes.Add(this);
+                Global.Meshes.all.Add(this);
         }
         // Add vert
         public void AddVert(Vert vert)
@@ -217,7 +216,7 @@ namespace RayTwol
                 entity.parentEntity = this;
                 entity.tag = "entity";
                 entity.colour = new Colour(206, 217, 51);
-                Global.meshes_entities.Add(entity);
+                Global.Meshes.entities.Add(entity);
                 mesh = entity;
             }
         }

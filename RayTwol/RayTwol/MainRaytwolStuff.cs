@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows;
 using System.Diagnostics;
 using System.Threading;
+using System.Timers;
 
 namespace RayTwol
 {
@@ -16,8 +17,6 @@ namespace RayTwol
     {
         void InitRaytwolStuff()
         {
-            Editor.LevelLoad += LevelLoad;
-
             foreach (FileInfo levelFile in Editor.levelFiles)
                 dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));
             
@@ -69,7 +68,12 @@ namespace RayTwol
 
 
 
-
+        
+        // CLOSE MAIN WINDOW
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
 
 
@@ -77,6 +81,7 @@ namespace RayTwol
         void dropdown_Levels_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Editor.OpenLevel(Editor.levelFiles[dropdown_Levels.SelectedIndex]);
+            dropdown_Levels.MoveFocus(new System.Windows.Input.TraversalRequest(System.Windows.Input.FocusNavigationDirection.Previous));
         }
         
 
@@ -86,19 +91,16 @@ namespace RayTwol
             if (Editor.currLevel != null)
                 Editor.OpenLevel(Editor.currLevel, "_ORIG");
         }
-        
         void button_Fetch_Click(object sender, RoutedEventArgs e)
         {
-            if (Editor.currLevel != null)
+            if (Editor.currLevel != null && File.Exists(Editor.currLevel.FullName + "_HOLD"))
                 Editor.OpenLevel(Editor.currLevel, "_HOLD");
         }
-
         void button_Hold_Click(object sender, RoutedEventArgs e)
         {
             if (Editor.currLevel != null)
                 Editor.SaveLevel("_HOLD");
         }
-
         void button_Save_click(object sender, RoutedEventArgs e)
         {
             if (Editor.currLevel != null)
@@ -106,13 +108,56 @@ namespace RayTwol
         }
 
 
-        // RUN GAME
+        // RUN/SYNC GAME
         private void button_Run_Click(object sender, RoutedEventArgs e)
         {
-            var r2 = new ProcessStartInfo();
-            r2.WorkingDirectory = Editor.cf_gameDir;
-            r2.FileName = "Rayman2.exe";
-            Process.Start(r2);
+            if (Process.GetProcessesByName("Rayman2").Length == 0)
+            {
+                var r2 = new ProcessStartInfo();
+                r2.WorkingDirectory = Editor.cf_gameDir;
+                r2.FileName = "Rayman2.exe";
+                Memory.process = Process.Start(r2);
+                Memory.isSynced = true;
+            }
+            else
+            {
+                if (!Memory.isSynced)
+                {
+                    Memory.process = Process.GetProcessesByName("Rayman2")[0];
+                    Memory.isSynced = true;
+                }
+                else
+                {
+                    Memory.isSynced = false;
+                }
+            }
+        }
+        void CheckIfGameRunning(object sender, ElapsedEventArgs e)
+        {
+            if (Process.GetProcessesByName("Rayman2").Length == 0)
+            {
+                Memory.runButtonText = "RUN";
+                if (Memory.isSynced)
+                    Memory.isSynced = false;
+            }
+            else
+                Memory.runButtonText = "SYNC";
+
+            if (Memory.isSynced)
+                Memory.runButtonText = "DESYNC";
+        }
+
+
+        // OPEN HELP
+        void button_Help_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Global.viewingHelp)
+            {
+                Global.help = new Help();
+                Global.help.Show();
+            }
+            else
+                Global.help.Focus();
         }
     }
 }

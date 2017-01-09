@@ -12,6 +12,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System.Globalization;
+using System.Timers;
 
 namespace RayTwol
 {
@@ -19,11 +20,17 @@ namespace RayTwol
     {
         public static List<MainWindow> viewports = new List<MainWindow>();
 
-        public static List<Mesh> meshes = new List<Mesh>();
-        public static List<Mesh> meshes_world_opaque = new List<Mesh>();
-        public static List<Mesh> meshes_world_transparent = new List<Mesh>();
-        public static List<Mesh> meshes_entities = new List<Mesh>();
-        public static List<Mesh> meshes_gizmos = new List<Mesh>();
+        public static class Meshes
+        {
+            public static List<Mesh> all = new List<Mesh>();
+            public static List<Mesh> world_opaque = new List<Mesh>();
+            public static List<Mesh> world_transparent = new List<Mesh>();
+            public static List<Mesh> entities = new List<Mesh>();
+            public static List<Mesh> gizmos = new List<Mesh>();
+
+            public static Mesh rayman = Primitives.Mesh_Cube(1, 1.5f, 1, new Vec3(), new Vec3());
+            public static Mesh camera = Primitives.Mesh_Cyllinder_tri(0.5f, 1, 5, new Vec3(), new Vec3());
+        }
 
         public static bool viewingHelp;
         public static Help help = new Help();
@@ -42,7 +49,6 @@ namespace RayTwol
         public static uint meshCount;
         public static uint polyCount;
         public static uint vertCount;
-        public static uint ZBufferSize;
 
         public static bool displayDebug = true;
         public static float FPS;
@@ -83,11 +89,11 @@ namespace RayTwol
         
         public static void ClearAllMeshes()
         {
-            meshes.Clear();
-            meshes_world_opaque.Clear();
-            meshes_world_transparent.Clear();
-            meshes_entities.Clear();
-            meshes_gizmos.Clear();
+            Meshes.all.Clear();
+            Meshes.world_opaque.Clear();
+            Meshes.world_transparent.Clear();
+            Meshes.entities.Clear();
+            Meshes.gizmos.Clear();
         }
 
 
@@ -238,12 +244,12 @@ namespace RayTwol
                             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)TextureMinFilter.Linear);
                             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)TextureMinFilter.Linear);
                         }
-                        meshes[(int)texID].texID = texID;
+                        Meshes.all[(int)texID].texID = texID;
 
                         if (transparent)
-                            meshes_world_transparent.Add(meshes[(int)texID]);
+                            Meshes.world_transparent.Add(Meshes.all[(int)texID]);
                         else
-                            meshes_world_opaque.Add(meshes[(int)texID]);
+                            Meshes.world_opaque.Add(Meshes.all[(int)texID]);
 
                         texID++;
                     }

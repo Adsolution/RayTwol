@@ -327,10 +327,17 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="384*"/>
+            <RowDefinition Height="385*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+        </Grid.ColumnDefinitions>
 
-        <WindowsFormsHost x:Name="viewport" Margin="301,41,5,41" Background="#FF0A0D0E" Initialized="viewport_Initialized"/>
+        <WindowsFormsHost x:Name="viewport" Margin="273,41,5,41" Background="#FF0A0D0E" Initialized="viewport_Initialized" Grid.RowSpan="2"/>
 
-        <ListView x:Name="objectsList" HorizontalAlignment="Left" Margin="12,41,0,121" Width="285" BorderBrush="#FF1E4139" Foreground="#FFCEFF6A" IsSynchronizedWithCurrentItem="True" Style="{DynamicResource ListViewStyle1}" SelectionChanged="objectsList_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="objectsList" HorizontalAlignment="Left" Margin="12,41,0,90" Width="257" BorderBrush="#FF1E4139" Foreground="#FFCEFF6A" IsSynchronizedWithCurrentItem="True" Style="{DynamicResource ListViewStyle1}" SelectionChanged="objectsList_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.RowSpan="2">
             <ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
                     <Setter Property="Visibility" Value="Collapsed" />
@@ -348,7 +355,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="button_Revert" Content="Revert" HorizontalAlignment="Left" Margin="12,10,0,0" Width="69" BorderBrush="#FF1E4139" Foreground="#FFFF4600" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Revert_Click">
+        <Button x:Name="button_Revert" Content="Revert" HorizontalAlignment="Left" Margin="12,10,0,0" Width="62" BorderBrush="#FF1E4139" Foreground="#FFFF4600" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Revert_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="1"/>
@@ -356,7 +363,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Fetch" Content="Fetch" HorizontalAlignment="Left" Margin="84,10,0,0" Width="69" BorderBrush="#FF1E4139" Foreground="#FFFF8000" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Fetch_Click">
+        <Button x:Name="button_Fetch" Content="Fetch" HorizontalAlignment="Left" Margin="77,10,0,0" Width="62" BorderBrush="#FF1E4139" Foreground="#FFFF8000" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Fetch_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="1"/>
@@ -364,7 +371,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Hold" Content="Hold" HorizontalAlignment="Left" Margin="156,10,0,0" Width="69" BorderBrush="#FF1E4139" Foreground="#FF33FF33" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Hold_Click">
+        <Button x:Name="button_Hold" Content="Hold" HorizontalAlignment="Left" Margin="142,10,0,0" Width="62" BorderBrush="#FF1E4139" Foreground="#FF33FF33" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Hold_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="1"/>
@@ -372,9 +379,9 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label x:Name="label_EntityCount" Content="Choose a level   → " HorizontalAlignment="Left" Margin="302,7,0,0" VerticalAlignment="Top" Foreground="#FFFFD933" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_EntityCount" Content="Choose a level   → " HorizontalAlignment="Left" Margin="273,7,0,0" VerticalAlignment="Top" Foreground="#FFFFD933" FontSize="16" FontWeight="Bold"/>
 
-        <ComboBox x:Name="dropdown_Levels" Margin="465,10,93,0" VerticalAlignment="Top" Height="28" BorderBrush="Black" Foreground="#FFFFD933" FontFamily="Consolas" Style="{DynamicResource ComboBoxStyle1}" FontSize="16" MaxDropDownHeight="720" SelectionChanged="dropdown_Levels_SelectionChanged">
+        <ComboBox x:Name="dropdown_Levels" Margin="435,10,107,0" VerticalAlignment="Top" Height="28" BorderBrush="Black" Foreground="#FFFFD933" FontFamily="Consolas" Style="{DynamicResource ComboBoxStyle1}" FontSize="16" MaxDropDownHeight="720" SelectionChanged="dropdown_Levels_SelectionChanged">
             <ComboBox.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FF141C1D" />
             </ComboBox.Resources>
@@ -385,9 +392,44 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <Border BorderBrush="#FF1E4139" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="12,0,0,10" VerticalAlignment="Bottom" Width="285" Background="#FF162022"/>
-        <Label x:Name="label_CamSpeed" Content="Cam speed:" HorizontalAlignment="Left" Margin="625,0,0,9" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="textbox_MoveSpeed" HorizontalAlignment="Left" Height="26" Margin="710,0,0,10" TextWrapping="Wrap" Text="40" VerticalAlignment="Bottom" Width="36" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged">
+        <Border BorderBrush="#FF1E4139" BorderThickness="1" HorizontalAlignment="Left" Height="75" Margin="12,0,0,10" VerticalAlignment="Bottom" Width="257" Background="#FF162022" Grid.Row="1">
+            <Canvas>
+                <TextBox x:Name="textbox_ObjName" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="241" Foreground="#FFCEFF6A" FontSize="14" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" IsEnabled="False" SelectionOpacity="0" Grid.ColumnSpan="2" Canvas.Left="7" Canvas.Top="6">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141C1D" Offset="0"/>
+                            <GradientStop Color="#FF233133" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_ObjPosX" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="77" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosX_TextChanged" IsEnabled="False" Canvas.Left="7" Canvas.Top="38">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF1D1414" Offset="0"/>
+                            <GradientStop Color="#FF332323" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_ObjPosY" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="77" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosY_TextChanged" IsEnabled="False" Grid.ColumnSpan="2" Canvas.Left="89" Canvas.Top="38">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141D15" Offset="0"/>
+                            <GradientStop Color="#FF233326" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_ObjPosZ" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="77" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosZ_TextChanged" IsEnabled="False" Grid.Column="1" Canvas.Left="171" Canvas.Top="38">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF14151D" Offset="0"/>
+                            <GradientStop Color="#FF232533" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+            </Canvas>
+        </Border>
+        <Label x:Name="label_CamSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="598,0,0,9" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold" Grid.Row="1"/>
+        <TextBox x:Name="textbox_MoveSpeed" HorizontalAlignment="Left" Height="26" Margin="652,0,0,10" TextWrapping="Wrap" Text="40" VerticalAlignment="Bottom" Width="36" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="0"/>
@@ -395,8 +437,8 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <Label x:Name="label_CamPos" Content="Position:" HorizontalAlignment="Left" Margin="302,0,0,10" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="textbox_CamPosX" HorizontalAlignment="Left" Height="26" Margin="369,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosX_TextChanged">
+        <Label x:Name="label_CamPos" Content="Camera:" HorizontalAlignment="Left" Margin="275,0,0,10" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold" Grid.Row="1"/>
+        <TextBox x:Name="textbox_CamPosX" HorizontalAlignment="Left" Height="26" Margin="343,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosX_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1D1414" Offset="0"/>
@@ -404,7 +446,7 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="textbox_CamPosY" HorizontalAlignment="Left" Height="26" Margin="452,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosY_TextChanged">
+        <TextBox x:Name="textbox_CamPosY" HorizontalAlignment="Left" Height="26" Margin="425,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosY_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141D15" Offset="0"/>
@@ -412,7 +454,7 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="textbox_CamPosZ" HorizontalAlignment="Left" Height="26" Margin="535,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosZ_TextChanged">
+        <TextBox x:Name="textbox_CamPosZ" HorizontalAlignment="Left" Height="26" Margin="509,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosZ_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF14151D" Offset="0"/>
@@ -420,31 +462,9 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <Label x:Name="label_ObjPos" Content="Pos:" HorizontalAlignment="Left" Margin="21,0,0,50" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="textbox_ObjPosX" HorizontalAlignment="Left" Height="26" Margin="79,0,0,51" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="65" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosX_TextChanged" IsEnabled="False">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF1D1414" Offset="0"/>
-                    <GradientStop Color="#FF332323" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="textbox_ObjPosY" HorizontalAlignment="Left" Height="26" Margin="149,0,0,51" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="65" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosY_TextChanged" IsEnabled="False">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF141D15" Offset="0"/>
-                    <GradientStop Color="#FF233326" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="textbox_ObjPosZ" HorizontalAlignment="Left" Height="26" Margin="219,0,0,51" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="65" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosZ_TextChanged" IsEnabled="False">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF14151D" Offset="0"/>
-                    <GradientStop Color="#FF232533" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
+
+
+
         <Button x:Name="button_Help" Content="?" Margin="0,10,5,0" BorderBrush="#FF1E4139" Foreground="#FFFFD933" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="28" Click="button_Help_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -453,27 +473,9 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <TextBlock x:Name="textblock_obj_name" HorizontalAlignment="Left" Margin="936,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFFFD933" FontSize="14" Height="20" Width="181"/>
-        <TextBlock x:Name="textblock_obj_pos" HorizontalAlignment="Left" Margin="936,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFAA24A4" FontSize="14" Height="20" Width="181"/>
-        <Label x:Name="label_ObjType" Content="Type:" HorizontalAlignment="Left" Margin="21,0,0,20" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="textbox_ObjType" HorizontalAlignment="Left" Height="26" Margin="79,0,0,20" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="205" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" IsEnabled="False" SelectionOpacity="0">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF141C1D" Offset="0"/>
-                    <GradientStop Color="#FF233133" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
-        <Label x:Name="label_ObjName" Content="Name:" HorizontalAlignment="Left" Margin="21,0,0,82" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="textbox_ObjName" HorizontalAlignment="Left" Height="26" Margin="79,0,0,82" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="205" Foreground="#FFCEFF6A" FontSize="14" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" IsEnabled="False" SelectionOpacity="0">
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF141C1D" Offset="0"/>
-                    <GradientStop Color="#FF233133" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
-        <Button x:Name="button_Save" Content="Save" HorizontalAlignment="Left" Margin="228,10,0,0" Width="69" BorderBrush="#FF1E4139" Foreground="#FF33ECFF" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Save_click">
+
+
+        <Button x:Name="button_Save" Content="Save" HorizontalAlignment="Left" Margin="207,10,0,0" Width="62" BorderBrush="#FF1E4139" Foreground="#FF33ECFF" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" Click="button_Save_click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="1"/>
@@ -481,7 +483,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Run" Content="RUN" Margin="0,10,38,0" BorderBrush="#FF1E4139" Foreground="#FF33FF33" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="50" Click="button_Run_Click">
+        <Button x:Name="button_Run" Content="RUN" Margin="0,10,36,0" BorderBrush="#FF1E4139" Foreground="#FF33FF33" FontSize="16" Height="28" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="68" Click="button_Run_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="1"/>
@@ -489,5 +491,91 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Border BorderBrush="#FF1E4139" BorderThickness="1" Margin="0,41,5,2" HorizontalAlignment="Right" Width="225">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF101819" Offset="0"/>
+                    <GradientStop Color="#FF162022" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Canvas>
+                <TextBox x:Name="textbox_RayPosX" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosX_TextChanged" IsEnabled="False" Canvas.Top="36" Canvas.Left="8">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF1D1414" Offset="0"/>
+                            <GradientStop Color="#FF332323" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_RayPosY" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosY_TextChanged" IsEnabled="False" Grid.ColumnSpan="2" Canvas.Left="79" Canvas.Top="36">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141D15" Offset="0"/>
+                            <GradientStop Color="#FF233326" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_RayPosZ" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosZ_TextChanged" IsEnabled="False" Grid.Column="1" Canvas.Left="150" Canvas.Top="36">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF14151D" Offset="0"/>
+                            <GradientStop Color="#FF232533" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <Label x:Name="rayman_label" Content="Rayman" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#7FFF7F00" FontSize="16" FontWeight="Bold" Width="100" Canvas.Left="8"/>
+                <CheckBox x:Name="checkbox_RayFreeze" Content="Freeze" Canvas.Left="7" Canvas.Top="69" Foreground="#FFCEFF6A" BorderBrush="#FF1E4139" FontSize="14" FontWeight="Bold">
+                    <CheckBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141C1D" Offset="0"/>
+                            <GradientStop Color="#FF233133" Offset="0.997"/>
+                        </LinearGradientBrush>
+                    </CheckBox.Background>
+                </CheckBox>
+                <Button x:Name="button_RayWarpToCamera" Content="Warp to camera" BorderBrush="#FF1E4139" Foreground="#FFCEFF6A" FontSize="14" Height="26" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="137" Click="button_RayWarpToCamera_Click" Canvas.Left="79" Canvas.Top="67">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141C1D" Offset="1"/>
+                            <GradientStop Color="#FF233133"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Canvas>
+        </Border>
+        <Border BorderBrush="#FF1E4139" BorderThickness="1" Margin="0,3,5,41" HorizontalAlignment="Right" Width="225" Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF101819" Offset="0"/>
+                    <GradientStop Color="#FF162022" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Canvas>
+                <Label x:Name="rayman_label1" Content="Camera" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#7F00C8C8" FontSize="16" FontWeight="Bold" Width="196" Canvas.Left="8"/>
+                <TextBox x:Name="textbox_CamPosX_Copy" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosX_TextChanged" IsEnabled="False" Canvas.Top="36" Canvas.Left="8">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF1D1414" Offset="0"/>
+                            <GradientStop Color="#FF332323" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_CamPosY_Copy" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosY_TextChanged" IsEnabled="False" Canvas.Left="79" Canvas.Top="36">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF141D15" Offset="0"/>
+                            <GradientStop Color="#FF233326" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+                <TextBox x:Name="textbox_CamPosZ_Copy" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="66" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_ObjPosZ_TextChanged" IsEnabled="False" Canvas.Left="150" Canvas.Top="36">
+                    <TextBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF14151D" Offset="0"/>
+                            <GradientStop Color="#FF232533" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBox.Background>
+                </TextBox>
+            </Canvas>
+        </Border>
     </Grid>
 </Window>
