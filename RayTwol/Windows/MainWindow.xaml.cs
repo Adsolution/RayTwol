@@ -31,8 +31,10 @@ namespace RayTwol
         {
             InitializeComponent();
             Global.viewports.Add(this);
-            InitRaytwolStuff();
-            
+
+            foreach (FileInfo levelFile in Editor.levelFiles)
+                dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));
+
             updateTimer.Interval = 1;
             updateTimer.Start();
             frameTimer.Start();
@@ -66,7 +68,8 @@ namespace RayTwol
         
         private void Update(object sender, EventArgs e)
         {
-            GameSync();
+            if (Memory.canSync)
+                GameSync();
             MouseOverEntity();
             GizmoAction();
             Movement();

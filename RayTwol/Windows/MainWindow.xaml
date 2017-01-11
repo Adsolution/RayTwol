@@ -7,7 +7,7 @@
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="RayTwol.MainWindow"
         MinHeight="475" MinWidth="770"
         mc:Ignorable="d"
-        Title="RayTwol" Height="800" Width="1280" Background="#FF111617" Icon="icont512.ico" Closed="MainWindow_Closed">
+        Title="RayTwol" Height="800" Width="1280" Background="#FF111617" Closed="MainWindow_Closed" Icon="/editor;component/icont512.ico" ContentRendered="Window_ContentRendered">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

@@ -13,6 +13,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System.Globalization;
 using System.Timers;
+using System.Windows;
 
 namespace RayTwol
 {
@@ -261,7 +262,7 @@ namespace RayTwol
                 var warn = new Warning("Error", string.Format("The geometry for this level could not be loaded ({0}). Press OK to re-initialise, or Cancel to continue.", e.Message)).ShowDialog();
                 if (warn.Value)
                 {
-                    Func.FirstTimeSetup();
+                    Setup.FirstTimeSetup();
                     Environment.Exit(0);
                 }
             }

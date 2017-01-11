@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RayTwol"
         mc:Ignorable="d"
-        Title="Warning" Height="210" Width="345" Background="#FF111617" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="icont512.ico">
+        Title="Warning" Height="210" Width="345" Background="#FF111617" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/editor;component/icont512.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="141*"/>

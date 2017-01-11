@@ -280,26 +280,6 @@ namespace RayTwol
             return size;
         }
 
-        public static void FirstTimeSetup()
-        {
-            var warn = new Warning("RayTwol", "Press OK to begin first-time setup. Once it finishes, please restart RayTwol.").ShowDialog();
-            if (warn.Value)
-            {
-                if (Directory.Exists(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol"))
-                    Func.DeleteDirectoryRecursive(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol");
-
-                Directory.CreateDirectory(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol");
-                Directory.CreateDirectory(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol\\Textures");
-
-                var r2lib = new ProcessStartInfo("rayman2lib.exe");
-                r2lib.Arguments = string.Format("exportallmaps \"{0}\" \"{1}\"", Editor.cf_gameDir + "\\Data\\World\\Levels", Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol");
-                Process.Start(r2lib);
-                r2lib.Arguments = string.Format("unpackcnt \"{0}\" \"{1}\" \"-png\"", Editor.cf_gameDir + "\\Data\\Textures.cnt", Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol\\Textures");
-                Process.Start(r2lib);
-            }
-            Environment.Exit(0);
-        }
-
         static int objStart = 0;
         static int objStartByte = 0;
         static bool objStartFound = false;
@@ -592,23 +572,20 @@ namespace RayTwol
 
     public static class Editor
     {
-        public static StreamReader configRead;
         public static List<FileInfo> levelFiles = new List<FileInfo>();
         public static List<FileInfo> levelFilesOriginal = new List<FileInfo>();
         public static FileInfo currLevel;
         public static byte[] levelBytes;
         public static List<CodeBlock> objects = new List<CodeBlock>();
         public static List<Entity> entities = new List<Entity>();
-
-        public static char[] cfSplit = { '\t' };
+        
         public static bool configFound;
         public static string cf_gameDir = null;
 
         public static EventHandler LevelLoad;
         public static EventHandler RaytwolInit;
         public static EventHandler ObjPosChanged;
-
-        public static DirectoryInfo gameDir;
+        
         public static DirectoryInfo[] levelDirs;
 
         public static void Init()
@@ -619,19 +596,19 @@ namespace RayTwol
             {
                 if (File.Exists("RayTwol.ini"))
                 {
-                    configRead = new StreamReader("RayTwol.ini");
-                    configFound = true;
-                }
-                else
-                    configFound = false;
+                    var configRead = new StreamReader("RayTwol.ini");
+                    char[] cfSplit = { '\t' };
 
-                if (configFound)
-                {
-                    string line = configRead.ReadLine();
-
-                    if (line.Split(cfSplit)[0] == "dir:")
-                        cf_gameDir = line.Split(cfSplit)[2];
-
+                    while (!configRead.EndOfStream)
+                    {
+                        string line = configRead.ReadLine();
+                        switch (line.Split(cfSplit)[0])
+                        {
+                            case "dir:":
+                                cf_gameDir = line.Split(cfSplit)[2];
+                                break;
+                        }
+                    }
                     configRead.Close();
                 }
 
@@ -639,42 +616,30 @@ namespace RayTwol
                     InvalidDir();
                 else
                 {
-                    try
-                    {
-                        gameDir = new DirectoryInfo(cf_gameDir + "\\Data\\World\\Levels");
-                        levelDirs = new DirectoryInfo[0];
-                        levelDirs = gameDir.GetDirectories("*", SearchOption.AllDirectories);
+                    if (Directory.Exists(cf_gameDir + "\\Data\\World\\Levels"))
                         validSetup = true;
-                    }
-                    catch
-                    {
+                    else
                         InvalidDir();
-                    }
                 }
             }
-            
 
-            
-            foreach (DirectoryInfo levelDir in levelDirs)
-                try
-                {
-                    levelFiles.Add(levelDir.GetFiles(levelDir.Name + ".sna")[0]);
-                }
-                catch { }
+            foreach (DirectoryInfo levelDir in new DirectoryInfo(cf_gameDir + "\\Data\\World\\Levels").GetDirectories("*", SearchOption.AllDirectories))
+                if (File.Exists(levelDir.FullName + "\\" + levelDir.Name + ".sna"))
+                    levelFiles.Add(new FileInfo(levelDir.FullName + "\\" + levelDir.Name + ".sna"));
 
-            var viewport = new MainWindow();
-            RaytwolInit(null, EventArgs.Empty);
-            viewport.Show();
+
+            Setup.SetupChecks();
         }
         public static void InvalidDir()
         {
-            Warning warning = new Warning("Warning", "A valid Rayman 2 install directory has not been selected.");
+            Warning warning = new Warning("Select directory", "A valid Rayman 2 install directory has not been selected. Press OK to browse.");
             warning.ShowDialog();
-            if (warning.DialogResult != true)
+            if (warning.DialogResult == false)
                 Environment.Exit(0);
             else
             {
                 var gamePathDialog = new FolderBrowserDialog();
+                gamePathDialog.RootFolder = Environment.SpecialFolder.MyComputer;
                 gamePathDialog.ShowDialog();
                 cf_gameDir = gamePathDialog.SelectedPath;
                 SaveConfig();
@@ -705,16 +670,12 @@ namespace RayTwol
             levelBytes = Func.DecryptSNA(level, suffix);
             
             Func.ResetLevelLoadValues();
-
             Global.LoadSceneFromFolder(cf_gameDir + "\\Data\\World\\Levels\\_raytwol\\" + level.Directory.Name);
-
             Func.FindObjects();
-
             currLevel = level;
+            LevelLoad(null, EventArgs.Empty);
 
             Cursor.Current = Cursors.Default;
-
-            LevelLoad(null, EventArgs.Empty);
         }
         public static void SaveLevel(string suffix = "")
         {
@@ -731,11 +692,6 @@ namespace RayTwol
                 sna.Close();
             }
             Cursor.Current = Cursors.Default;
-        }
-
-        public static void CreateDisplayLists()
-        {
-
         }
     }
 

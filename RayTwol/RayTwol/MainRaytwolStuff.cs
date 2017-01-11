@@ -15,40 +15,6 @@ namespace RayTwol
 {
     partial class MainWindow
     {
-        void InitRaytwolStuff()
-        {
-            foreach (FileInfo levelFile in Editor.levelFiles)
-                dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));
-            
-
-            // FIRST TIME EXTRACTIONS
-            if (!Directory.Exists(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol"))
-            {
-                Func.FirstTimeSetup();
-            }
-            if (Directory.Exists(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol"))
-            {
-                long size = Func.DirectorySize(new DirectoryInfo(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol"));
-                if (!(size == 38341965 || size == 19150935))
-                {
-                    var warn = new Warning("Warning", "First-time setup is not complete or setup-related files have been modified. If this error persists, press OK to re-initialise the setup.").ShowDialog();
-                    if (warn.Value)
-                        Func.FirstTimeSetup();
-                    Application.Current.Shutdown();
-                }
-            }
-                
-            if (Directory.Exists("Textures.cnt.extracted"))
-            {
-                Func.MoveDirectory(new DirectoryInfo("Textures.cnt.extracted"), new DirectoryInfo(Editor.cf_gameDir + "\\Data\\World\\Levels\\_raytwol\\Textures"));
-                Func.DeleteDirectoryRecursive("Textures.cnt.extracted");
-                Directory.Delete("Textures.cnt.extracted");
-
-                Global.help = new Help();
-                Global.help.Show();
-            }
-        }
-
         void LevelLoad(object sender, EventArgs e)
         {
             objectsList.SelectedIndex = -1;
@@ -72,7 +38,7 @@ namespace RayTwol
         // CLOSE MAIN WINDOW
         void MainWindow_Closed(object sender, EventArgs e)
         {
-            Application.Current.Shutdown();
+            Environment.Exit(0);
         }
 
 
@@ -117,14 +83,16 @@ namespace RayTwol
                 r2.WorkingDirectory = Editor.cf_gameDir;
                 r2.FileName = "Rayman2.exe";
                 Memory.process = Process.Start(r2);
-                Memory.isSynced = true;
+                if (Memory.canSync)
+                    Memory.isSynced = true;
             }
             else
             {
                 if (!Memory.isSynced)
                 {
                     Memory.process = Process.GetProcessesByName("Rayman2")[0];
-                    Memory.isSynced = true;
+                    if (Memory.canSync)
+                        Memory.isSynced = true;
                 }
                 else
                 {
@@ -158,6 +126,14 @@ namespace RayTwol
             }
             else
                 Global.help.Focus();
+        }
+        void Window_ContentRendered(object sender, EventArgs e)
+        {
+            if (Setup.firstTime)
+            {
+                Global.help = new Help();
+                Global.help.Show();
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RayTwol"
         mc:Ignorable="d"
         MinHeight="200" MinWidth="562"
-        Title="Help" Height="549" Width="562" Background="#FF111617" Icon="icont512.ico" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="Help" Height="549" Width="562" Background="#FF111617" Closing="Window_Closing" Loaded="Window_Loaded" Icon="/editor;component/icont512.ico">
     <Grid>
         <ScrollViewer>
             <TextBlock x:Name="textBlock" Margin="10" TextWrapping="Wrap" Text="readme.txt missing" Foreground="#FFFFD933" FontSize="16" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
