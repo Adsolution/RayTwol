@@ -7,7 +7,7 @@
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="RayTwol.MainWindow"
         MinHeight="475" MinWidth="770"
         mc:Ignorable="d"
-        Title="RayTwol" Height="800" Width="1280" Background="#FF111617" Closed="MainWindow_Closed" Icon="/editor;component/icont512.ico" ContentRendered="Window_ContentRendered">
+        Title="RayTwol" Height="800" Width="1280" Background="#FF111617" Closed="MainWindow_Closed" Icon="/editor;component/icont512.ico">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -428,8 +428,8 @@
                 </TextBox>
             </Canvas>
         </Border>
-        <Label x:Name="label_CamSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="598,0,0,9" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold" Grid.Row="1"/>
-        <TextBox x:Name="textbox_MoveSpeed" HorizontalAlignment="Left" Height="26" Margin="652,0,0,10" TextWrapping="Wrap" Text="40" VerticalAlignment="Bottom" Width="36" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" Grid.Row="1">
+        <Label x:Name="label_CamSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="585,0,0,10" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold" Grid.Row="1"/>
+        <TextBox x:Name="textbox_MoveSpeed" HorizontalAlignment="Left" Height="26" Margin="641,0,0,10" TextWrapping="Wrap" Text="40" VerticalAlignment="Bottom" Width="36" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4139" CaretBrush="#FFCEFF6A" TextChanged="textbox_MoveSpeed_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141C1D" Offset="0"/>
@@ -438,7 +438,7 @@
             </TextBox.Background>
         </TextBox>
         <Label x:Name="label_CamPos" Content="Camera:" HorizontalAlignment="Left" Margin="275,0,0,10" VerticalAlignment="Bottom" Foreground="#FFCEFF6A" FontSize="14" FontWeight="Bold" Grid.Row="1"/>
-        <TextBox x:Name="textbox_CamPosX" HorizontalAlignment="Left" Height="26" Margin="343,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosX_TextChanged" Grid.Row="1">
+        <TextBox x:Name="textbox_CamPosX" HorizontalAlignment="Left" Height="26" Margin="341,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF5B2C2C" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosX_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1D1414" Offset="0"/>
@@ -446,7 +446,7 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="textbox_CamPosY" HorizontalAlignment="Left" Height="26" Margin="425,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosY_TextChanged" Grid.Row="1">
+        <TextBox x:Name="textbox_CamPosY" HorizontalAlignment="Left" Height="26" Margin="423,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF1E4123" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosY_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF141D15" Offset="0"/>
@@ -454,7 +454,7 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="textbox_CamPosZ" HorizontalAlignment="Left" Height="26" Margin="509,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosZ_TextChanged" Grid.Row="1">
+        <TextBox x:Name="textbox_CamPosZ" HorizontalAlignment="Left" Height="26" Margin="505,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="78" Foreground="#FFCEFF6A" FontSize="16" BorderBrush="#FF2C305B" CaretBrush="#FFCEFF6A" TextChanged="textbox_CamPosZ_TextChanged" Grid.Row="1">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF14151D" Offset="0"/>

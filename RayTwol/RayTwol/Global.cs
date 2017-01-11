@@ -19,6 +19,8 @@ namespace RayTwol
 {
     public class Global
     {
+        public static bool debugMode = true;
+
         public static List<MainWindow> viewports = new List<MainWindow>();
 
         public static class Meshes

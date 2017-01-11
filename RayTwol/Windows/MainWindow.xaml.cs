@@ -29,41 +29,59 @@ namespace RayTwol
 
         public MainWindow()
         {
-            InitializeComponent();
-            Global.viewports.Add(this);
+            try
+            {
+                InitializeComponent();
+                Global.viewports.Add(this);
 
-            foreach (FileInfo levelFile in Editor.levelFiles)
-                dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));
+                foreach (FileInfo levelFile in Editor.levelFiles)
+                    dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));
 
-            updateTimer.Interval = 1;
-            updateTimer.Start();
-            frameTimer.Start();
-            frameTimerMin.Start();
-            frameTimerMax.Start();
+                updateTimer.Interval = 1;
+                updateTimer.Start();
+                frameTimer.Start();
+                frameTimerMin.Start();
+                frameTimerMax.Start();
 
-            CamMoved += Viewport_CamMoved;
+                CamMoved += Viewport_CamMoved;
 
-            updateTimer.Tick += Update;
+                updateTimer.Tick += Update;
 
-            Editor.LevelLoad += LevelLoad;
-            Memory.checkRunningTimer.Interval = 500;
-            Memory.checkRunningTimer.Start();
-            Memory.checkRunningTimer.Elapsed += CheckIfGameRunning;
+                Editor.LevelLoad += LevelLoad;
+                Memory.checkRunningTimer.Interval = 500;
+                Memory.checkRunningTimer.Start();
+                Memory.checkRunningTimer.Elapsed += CheckIfGameRunning;
+            }
+            catch (Exception e)
+            {
+                var warn = new Warning("Crash", e.Message).ShowDialog();
+                Environment.Exit(0);
+            }
+            
         }
 
         void viewport_Initialized(object sender, EventArgs e)
         {
-            gl = new GLControl(new GraphicsMode(32, 24, 4, 4));
-            gl.Load += Gl_Load;
-            gl.Resize += Gl_Resize;
-            viewport.Child = gl;
+            try
+            {
+                gl = new GLControl(new GraphicsMode(32, 24, 4, 4));
+                gl.Load += Gl_Load;
+                gl.Resize += Gl_Resize;
+                viewport.Child = gl;
 
-            gl.KeyDown += Gl_KeyDown;
-            gl.KeyUp += Gl_KeyUp;
-            gl.MouseDown += Gl_MouseDown;
-            gl.MouseUp += Gl_MouseUp;
-            gl.MouseWheel += Gl_MouseWheel;
-            gl.MouseMove += Gl_MouseMove;
+                gl.KeyDown += Gl_KeyDown;
+                gl.KeyUp += Gl_KeyUp;
+                gl.MouseDown += Gl_MouseDown;
+                gl.MouseUp += Gl_MouseUp;
+                gl.MouseWheel += Gl_MouseWheel;
+                gl.MouseMove += Gl_MouseMove;
+            }
+            catch (Exception ex)
+            {
+                var warn = new Warning("Crash", ex.Message).ShowDialog();
+                Environment.Exit(0);
+            }
+            
         }
         
         private void Update(object sender, EventArgs e)

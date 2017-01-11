@@ -65,7 +65,16 @@ namespace RayTwol
                 }
             }
 
-            new MainWindow().ShowDialog();
+            try
+            {
+                new MainWindow().ShowDialog();
+            }
+            catch (Exception e)
+            {
+                var warn = new Warning("Crash", e.Message).ShowDialog();
+                Environment.Exit(0);
+            }
+            
         }
         
         
