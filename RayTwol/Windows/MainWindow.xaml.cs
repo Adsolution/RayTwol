@@ -30,7 +30,6 @@ namespace RayTwol
         public MainWindow()
         {
             InitializeComponent();
-            Global.viewports.Add(this);
 
             foreach (FileInfo levelFile in Editor.levelFiles)
                 dropdown_Levels.Items.Add(levelFile.Directory.Name.PadRight(10, ' ') + "•  " + Func.CodeToGameName(levelFile.Directory.Name));

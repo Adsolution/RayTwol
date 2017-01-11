@@ -21,8 +21,6 @@ namespace RayTwol
     {
         public static bool debugMode = true;
 
-        public static List<MainWindow> viewports = new List<MainWindow>();
-
         public static class Meshes
         {
             public static List<Mesh> all = new List<Mesh>();
@@ -39,8 +37,6 @@ namespace RayTwol
         public static Help help = new Help();
 
         public static bool wireframe;
-
-        public static List<EntityHandle> entityHandles = new List<EntityHandle>();
         
         public static uint[] texture = new uint[1024];
         public static uint startIndex;

@@ -661,7 +661,6 @@ namespace RayTwol
             Global.selectedEntity = null;
             Global.mouseOverEntity = null;
             Global.ClearAllMeshes();
-            Global.entityHandles.Clear();
             entities.Clear();
             objects.Clear();
 

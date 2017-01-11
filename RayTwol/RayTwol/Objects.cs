@@ -211,7 +211,6 @@ namespace RayTwol
 
             if (pos.isValid)
             {
-                EntityHandle handle = new EntityHandle(Global.viewports[0], this);
                 Mesh entity = Primitives.Mesh_Cube(1, 1, 1, new Vec3(-pos.x, pos.z, pos.y), new Vec3());
                 entity.parentEntity = this;
                 entity.tag = "entity";
@@ -245,24 +244,6 @@ namespace RayTwol
                 code.code[code.offsets[1] + 0x0A] = z[2];
                 code.code[code.offsets[1] + 0x0B] = z[3];
             }
-        }
-    }
-
-
-
-
-    public class EntityHandle
-    {
-        MainWindow viewport;
-        public Entity entity;
-        public bool mouseOver;
-        public bool enabled = true;
-
-        public EntityHandle(MainWindow viewport, Entity entity)
-        {
-            this.viewport = viewport;
-            this.entity = entity;
-            Global.entityHandles.Add(this);
         }
     }
 

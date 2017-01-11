@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RayTwol"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="RayTwol.MainWindow"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="RayTwol.MainWindow"
         MinHeight="475" MinWidth="770"
         mc:Ignorable="d"
         Title="RayTwol" Height="800" Width="1280" Background="#FF111617" Closed="MainWindow_Closed" Icon="/editor;component/icont512.ico">
